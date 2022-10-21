@@ -14,8 +14,9 @@ class multilambda:
         printtype(self.variables[name])
 
     def execute(self):
+        responces = []
         for i in self.function_list:
-            i[0](*i[1])
+            responces.append(i[0](*i[1]))
 
     def getvars(self):
         return self.variables
@@ -68,41 +69,33 @@ class multilambda:
             return False
 
     def remove_all_keys(self, function: list):
-        try:
-            while function in self.function_list:
-                if function in self.function_list:
-                    self.function_list.remove(function)
-            return True
-        except Exception as e:
-            print(e.with_traceback())
-            return False
+        while function in self.function_list:
+            if function in self.function_list:
+                self.function_list.remove(function)
+        return True
 
     def clear_keys(self):
-        try:
-            self.function_list = []
-            self.is_empty = True
-            return True
-        except Exception as e:
-            print(e.with_traceback())
-            return False
+        self.function_list = []
+        self.is_empty = True
+        return True
+
+    def vars(self, var):
+        return self.variables[var]
 
 
-def builder(functions: list) -> multilambda:
+def builder(*functions) -> multilambda:
     instance = multilambda([])
     for x in functions:
         instance.add_key(x)
     return instance
 
 
-def parameter_constructor(*args) -> list:
+def Parameter(*args) -> list:
     return [param for param in args]
 
 
-def function_constructor(function, params: list = None) -> list:
+def Function(function, params: list = None) -> list:
     if params is None:
         params = []
     return [function, params]
 
-
-def functions_builder(*args) -> list:
-    return [function for function in args]

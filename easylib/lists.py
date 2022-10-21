@@ -13,24 +13,8 @@ def combine_list(items: list = None):
         return word
 
 
-def rand_gen(length: int, type, int_lower: int = 0, int_higher: int = 100,
-             str_list: list = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r",
-                               "s", "t", "u", "v", "w", "x", "y", "z"], str_length: int = 2):
-    List = []
-    if type == int:
-        for i in range(length):
-            List.append(random.randint(int_lower, int_higher))
-        return List
-    elif type == str:
-        for i in range(length):
-            string = ""
-            for x in range(str_length):
-                string = f"{string}{random.choice(str_list)}"
-            List.append(string)
-        return List
-
-
 def flattenList(alist: list = None):
+    """Will remove all internal lists in a list and make it one coherent list"""
     if alist is None:
         raise ValueError("Did not pass through a valid list to flatten")
     else:
@@ -44,6 +28,7 @@ def flattenList(alist: list = None):
 
 
 def add_list(items: list, check: bool = True):
+    """Will add all items in a list"""
     num: any = 0
     for i in items:
         if type(i) != int and check:
@@ -61,11 +46,15 @@ class Import:
         else:
             self.List = items
 
-    def append(self, items: list = None):
+    def append_list(self, items: list = None):
         if items is None:
             raise ValueError("Did not pass through valid list to append")
         else:
             self.List = self.List + items
+
+    def append(self, item):
+        if item is None:
+            raise ValueError("Did not pass through a valid item to append")
 
     def pop(self, __index: int = 0):
         item = self.List.pop(__index=__index)
