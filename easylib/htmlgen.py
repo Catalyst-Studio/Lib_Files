@@ -218,7 +218,7 @@ def Command(*args, **attributes):
     return f"<command{attributes}>{internals}</command>"
 
 
-def datagrid(*args, **attributes):
+def Datagrid(*args, **attributes):
     attributes = Attributes(attributes)
     internals = Internals(args)
     return f"<datagrid{attributes}>{internals}</datagrid>"

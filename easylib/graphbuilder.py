@@ -1,4 +1,4 @@
-import matplotlib.axes
+import matplotlib
 from matplotlib import pyplot
 
 
@@ -22,7 +22,8 @@ class Graphbuilder:
     graphlist = []
     valid_shapes = ["rectangle", "square"]
 
-    def __init__(self, shape: str = "rectangle"):
+    def __init__(self, shape: str = "rectangle", plotEngine: str = 'TkAgg'):
+        """Sets the shape of the provided graphs and changes the engine that the graphing engine uses"""
         if shape not in self.valid_shapes:
             raise ValueError(
                 """Shape provided is not a valid shape
@@ -32,6 +33,7 @@ class Graphbuilder:
             )
         else:
             self.shape = shape
+        matplotlib.use(plotEngine)
 
     def append(self, graph: list):
         """Add a graph to be displayed later"""
@@ -59,7 +61,7 @@ class Graphbuilder:
         else:
             odd = False
         if self.shape == "rectangle":
-            pair = [total_length / 2, 2]
+            pair = [2, total_length / 2]
         elif self.shape == "square":
             divider = 2
             xy = {}
@@ -77,12 +79,31 @@ class Graphbuilder:
                 if c < y:
                     y = c
             pair = pairs[y]
+        else:
+            raise ValueError(
+                """Shape provided is not a valid shape
+                valid shapes:
+                    square
+                    rectangle"""
+            )
         if odd:
             pair[0] = pair[0] + 1
         pairs = []
-        for i in range(0, pair[0]):
-            for x in range(0, pair[1]):
+        figure, axis = pyplot.subplots(int(pair[1]), int(pair[0]))
+        for i in range(0, int(pair[0])):
+            for x in range(0, int(pair[1])):
                 pairs.append([i, x])
-        print(pairs)
+        pairsRemoveAmount = len(pairs) - (total_length + 1)
+        for t in range(0, pairsRemoveAmount):
+            pairs.pop(-1)
         for x in pairs:
-            print(f"x-cor: {x[1]}, y-cor: {x[0]}")
+            index = pairs.index(x)
+            graphs = self.graphlist[index]
+            labelSet = False
+            for graph in graphs:
+                axis[x[1], x[0]].plot(graph["x"], graph["y"])
+                if not labelSet:
+                    axis[x[1], x[0]].set_title(graph["label"])
+                    labelSet = True
+
+        pyplot.show()

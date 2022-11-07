@@ -17,15 +17,11 @@ def dict_to_list(items: dict = None, split: bool = True):
                 items_r.append(items[i])
             return items_r
 
-class dictionary_worker:
+class Import:
     """Class to do multiple things to the same dictionary more efficiently"""
-    __doc__ = "Class to do multiple things to the same dictionary more efficiently"
 
-    def __init__(self, dictionary: dict = None):
-        if dictionary is None:
-            raise ValueError("Dictionary not specified")
-        else:
-            self.dictionary = dictionary
+    def __init__(self, dictionary: dict):
+        self.dictionary = dictionary
 
     def __getitem__(self, item):
         return self.dictionary[item]
@@ -33,3 +29,6 @@ class dictionary_worker:
     def to_list(self, split: bool = True):
         """Will return the converted dictionary to list"""
         return dict_to_list(items=self.dictionary, split=split)
+
+    def __str__(self):
+        return str(self.dictionary)

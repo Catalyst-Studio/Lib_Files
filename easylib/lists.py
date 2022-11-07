@@ -38,6 +38,19 @@ def add_list(items: list, check: bool = True):
     return num
 
 
+def to_dict(items: list):
+    Dict = {}
+    if len(items) % 2 != 0:
+        raise ValueError("Number of items in list are not even")
+    itemnum = 0
+    for x in range(int(len(items) / 2)):
+        item = items[itemnum + 1]
+        key = items[itemnum]
+        itemnum = itemnum + 2
+        Dict[key] = item
+    return Dict
+
+
 class Import:
 
     def __init__(self, items: list):
@@ -100,3 +113,12 @@ class Import:
 
     def index(self, __value, __start, __stop):
         self.List.index(__value, __start, __stop)
+
+    def to_dict(self):
+        return to_dict(items=self.List)
+
+    def split_to_list(self):
+        newlist = []
+        for x in self.List:
+            newlist.append([x])
+        return newlist
