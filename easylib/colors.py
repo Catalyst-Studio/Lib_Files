@@ -1,11 +1,14 @@
+from random import randint
+
+
 class printStyle:
 
     def __init__(self):
         self.stylesList = ["black", "red", "green", "brown", "blue", "purple", "cyan", "light_gray", "dark_gray",
-                      "light_red",
-                      "light_green", "yellow", "light_blue", "light_purple", "light_cyan", "light_white", "bold",
-                      "faint",
-                      "italic", "underline", "blink", "negative", "crossed"]
+                           "light_red",
+                           "light_green", "yellow", "light_blue", "light_purple", "light_cyan", "light_white", "bold",
+                           "faint",
+                           "italic", "underline", "blink", "negative", "crossed"]
         self.bgstylelist = ["black", "red", "green", "orange", "blue", "purple", "cyan", "light_gray"]
         self.styles = {}
         self.bgstyles = {}
@@ -70,3 +73,47 @@ class printStyle:
                     s1 = s1 + '\x1b[%sm %s \x1b[0m' % (format, format)
                 print(s1)
             print('\n')
+
+
+class color:
+
+    def __init__(self, color: tuple or str):
+        if type(color) == str:
+            self.color = hex_to_rgb(color)
+        elif type(color) == tuple:
+            self.color = color
+        else:
+            raise ValueError("The color given is in an incorrect format")
+
+    def hex(self):
+        return rgb_to_hex(r=self.color[0], g=self.color[1], b=self.color[2])
+
+    def rgb(self):
+        return self.color
+
+    def __str__(self):
+        return '\033[{};2;{};{};{}m'.format(38, self.color[0], self.color[1], self.color[2])
+
+    def background(self):
+        return '\033[{};2;{};{};{}m'.format(48, self.color[0], self.color[1], self.color[2])
+
+
+def rgb_to_hex(r, g, b):
+    return '{:x}{:x}{:x}'.format(r, g, b)
+
+
+def hex_to_rgb(hex):
+    rgb = []
+    for i in (0, 2, 4):
+        decimal = int(hex[i:i + 2], 16)
+        rgb.append(decimal)
+    return tuple(rgb)
+
+
+def randColor():
+    randcolor = (randint(0, 255), randint(0, 255), randint(0, 255))
+    return color(color=randcolor)
+
+
+def colored(Color: color, message: str, background: bool = False):
+    return f"{str(Color.background()) if background else str(Color)}{message}\033[0m"
