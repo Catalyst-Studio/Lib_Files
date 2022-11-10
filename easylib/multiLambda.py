@@ -5,24 +5,60 @@ class multiLambda:
     is_empty = True
 
     def setvar(self, name: any, value: any):
+        """
+        It sets the value of a variable.
+
+        :param name: The name of the variable
+        :type name: any
+        :param value: The value to set the variable to
+        :type value: any
+        """
         self.variables[name] = value
 
     def getvar(self, name: any):
+        """
+        It returns the value of the variable with the name 'name' from the dictionary 'variables'
+
+        :param name: The name of the variable
+        :type name: any
+        :return: The value of the variable.
+        """
         return self.variables[name]
 
     def printvar(self, name: any, printtype: any = print):
+        """
+        `printvar` is a function that takes in two arguments, `self` and `name`, and prints the value of the variable `name`
+        in the `self` object
+
+        :param name: The name of the variable you want to print
+        :type name: any
+        :param printtype: The function to use to print the variable
+        :type printtype: any
+        """
         printtype(self.variables[name])
 
     def execute(self):
+        """
+        It takes a list of functions and their arguments, and executes them in order
+        """
         responces = []
         for i in self.function_list:
             responces.append(i[0](*i[1]))
 
     def getvars(self):
+        """
+        It returns the variables of the class
+        :return: The variables are being returned.
+        """
         return self.variables
 
     def __init__(self, functions: list):
-        """Initilizes the MultiLambda Class"""
+        """
+        It takes a list of functions and their parameters, and then it adds them to the function list
+
+        :param functions: list
+        :type functions: list
+        """
         if not isinstance(functions, list):
             raise ValueError("Parameter for creations of a function must be a list")
         for x in range(len(functions)):
@@ -41,11 +77,20 @@ class multiLambda:
                 self.is_empty = False
 
     def get_keys(self):
-        """Returns a list of all the functions stored in the current MultiLambda class"""
+        """
+        It returns the list of keys in the dictionary.
+        :return: The function_list is being returned.
+        """
         return self.function_list
 
     def add_key(self, function: list):
-        """Adds a function to the MultiLambda class to be executed later"""
+        """
+        It adds a function to the function list
+
+        :param function: list
+        :type function: list
+        :return: A list of lists.
+        """
         try:
             if function[1][0] == "$self":
                 function[1][0] = self
@@ -56,7 +101,13 @@ class multiLambda:
             return False
 
     def remove_key(self, function: list):
-        """Removes the function provided from the MultiLambda class"""
+        """
+        It removes a function from the function list
+
+        :param function: list
+        :type function: list
+        :return: The function is being returned.
+        """
         try:
             if function in self.function_list:
                 item = self.function_list.remove(function)
@@ -69,25 +120,42 @@ class multiLambda:
             return False
 
     def remove_all_keys(self, function: list):
-        """Removes all functions of the function provided"""
+        """
+        It removes all the keys in the list that are equal to the function
+
+        :param function: list
+        :type function: list
+        :return: True
+        """
         while function in self.function_list:
             if function in self.function_list:
                 self.function_list.remove(function)
         return True
 
     def clear_keys(self):
-        """Removes all of the functions in the MultiLambda class"""
+        """
+        This function clears the list of functions and sets the is_empty flag to True
+        :return: True
+        """
         self.function_list = []
         self.is_empty = True
         return True
 
     def vars(self, var):
-        """Returns a variable stored in the MultiLambda class"""
+        """
+        It returns the value of the variable 'var' in the dictionary 'variables'
+
+        :param var: The variable to be returned
+        :return: The value of the variable.
+        """
         return self.variables[var]
 
 
 def builder(*functions) -> multilambda:
-    """Will make a MultiLambda instance with the functions provided"""
+    """
+    It takes a list of functions and returns a multilambda object with those functions as keys
+    :return: A multilambda object with the functions added to it.
+    """
     instance = multilambda([])
     for x in functions:
         instance.add_key(x)
@@ -95,12 +163,25 @@ def builder(*functions) -> multilambda:
 
 
 def Parameter(*args) -> list:
-    """Will generate the parameters used in a function"""
+    """
+    It takes in any number of arguments and returns a list of those arguments
+    :return: A list of the parameters
+    """
     return [param for param in args]
 
 
 def Function(function, params: list = None) -> list:
-    """Will generate a function with the function and parameters provided"""
+    """
+    "Function takes a function and a list of parameters and returns a list of the function and the parameters."
+
+    The first line of the function is a docstring. It's a string that describes what the function does. It's not necessary,
+    but it's good practice to include one
+
+    :param function: The function to be called
+    :param params: list = None
+    :type params: list
+    :return: A list with the function and the parameters.
+    """
     if params is None:
         params = []
     return [function, params]

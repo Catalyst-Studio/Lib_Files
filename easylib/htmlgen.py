@@ -3,6 +3,13 @@ import pathlib
 
 
 def Attributes(args: dict):
+    """
+    It takes a dictionary of attributes and returns a string of attributes
+
+    :param args: a dictionary of attributes and their values
+    :type args: dict
+    :return: A string of attributes
+    """
     if args is not None:
         arg_list = []
         for x in args:
@@ -16,6 +23,13 @@ def Attributes(args: dict):
 
 
 def Internals(args: tuple):
+    """
+    It takes a tuple of strings and returns a string of all the strings in the tuple concatenated together
+
+    :param args: tuple
+    :type args: tuple
+    :return: the internals of the tuple.
+    """
     internals = ""
     if args is not None:
         for x in args:

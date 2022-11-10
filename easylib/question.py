@@ -6,12 +6,22 @@ class question_asker:
     answers = []
 
     def __init__(self, *args):
-        """Initializes the Question Asker"""
+        """
+        The function takes in a list of questions and appends them to the questions list
+        """
         for questionn in args:
             self.questions.append(questionn)
 
     def ask(self, index: int = 0, keep: bool = False):
-        """Asks a specific question and gives back the answer and question"""
+        """
+        The function asks a question, and then appends the answer to the answers list
+
+        :param index: The index of the question you want to ask, defaults to 0
+        :type index: int (optional)
+        :param keep: If you want to keep the question in the list of questions, set this to True, defaults to False
+        :type keep: bool (optional)
+        :return: A dictionary with the answer and the question.
+        """
         answer = input(self.questions[index])
         self.answers.append({"answer": answer, "question": self.questions[index]})
         if not keep:
@@ -19,16 +29,26 @@ class question_asker:
         return {"answer": answer, "question": self.questions[index]}
 
     def append(self, *args):
-        """Adds a question to the questions to be asked"""
+        """
+        It takes a list of questions and appends them to the end of the list of questions
+        """
         for questionn in args:
             self.questions.append(questionn)
 
     def remove(self, item: str):
-        """Removes a question from the questions to be asked"""
+        """
+        It removes the item from the list.
+
+        :param item: str
+        :type item: str
+        """
         self.questions.remove(item)
 
     def ask_all(self):
-        """Asks all the questions added to the Question List"""
+        """
+        It takes a list of questions, asks them one by one, and returns a list of answers
+        :return: A list of dictionaries.
+        """
         answers = []
         for questionn in self.questions:
             answer = input(questionn)
@@ -37,15 +57,30 @@ class question_asker:
         return answers
 
     def get_answer(self, index: int):
-        """Gets a specific answer"""
+        """
+        It returns the answer at the given index
+
+        :param index: The index of the answer you want to get
+        :type index: int
+        :return: The answer to the question at the given index.
+        """
         return self.answers[index]
 
     def get_all_answers(self):
-        """Returns a list of all answers"""
+        """
+        It returns all the answers for a question.
+        :return: The answers to the question.
+        """
         return self.answers
 
     def ask_random(self, append: bool = False):
-        """Asks a random question from the list of questions to be asked"""
+        """
+        It takes a boolean argument, and if it's True, it appends the user's answer to the answers list
+
+        :param append: If True, the answer will be appended to the answers list, defaults to False
+        :type append: bool (optional)
+        :return: A dictionary with the question and answer.
+        """
         question = random.choice(self.questions)
         answer = input(question)
         if append:

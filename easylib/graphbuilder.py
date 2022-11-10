@@ -3,6 +3,19 @@ from matplotlib import pyplot
 
 
 def Set(x: list, y: list, label: str = None, linestyle: str = "-"):
+    """
+    It takes two lists of numbers, and returns a dictionary with the keys "x", "y", "label", and "linestyle"
+
+    :param x: list of x-values
+    :type x: list
+    :param y: The y-axis values of the line
+    :type y: list
+    :param label: The label of the line
+    :type label: str
+    :param linestyle: The style of the line, defaults to -
+    :type linestyle: str (optional)
+    :return: A dictionary with the keys "x", "y", "label", and "linestyle"
+    """
     if len(x) != len(y):
         raise ValueError("Length of provided list does not match")
     return {
@@ -14,6 +27,10 @@ def Set(x: list, y: list, label: str = None, linestyle: str = "-"):
 
 
 def Graph(*args):
+    """
+    It takes any number of arguments and returns a list of those arguments
+    :return: A list of graphs
+    """
     return [graph for graph in args]
 
 
@@ -23,7 +40,14 @@ class Graphbuilder:
     valid_shapes = ["rectangle", "square"]
 
     def __init__(self, shape: str = "rectangle", plotEngine: str = 'TkAgg'):
-        """Sets the shape of the provided graphs and changes the engine that the graphing engine uses"""
+        """
+        This function sets the shape of the provided graphs and changes the engine that the graphing engine uses
+
+        :param shape: The shape of the graph. Valid shapes are:, defaults to rectangle
+        :type shape: str (optional)
+        :param plotEngine: The engine that the graphing engine uses, defaults to TkAgg
+        :type plotEngine: str (optional)
+        """
         if shape not in self.valid_shapes:
             raise ValueError(
                 """Shape provided is not a valid shape
@@ -36,24 +60,40 @@ class Graphbuilder:
         matplotlib.use(plotEngine)
 
     def append(self, graph: list):
-        """Add a graph to be displayed later"""
+        """
+        This function takes a list of graphs and adds it to the graphlist
+
+        :param graph: list
+        :type graph: list
+        """
         self.graphlist.append(graph)
 
     def export(self):
-        """Export the graph list"""
+        """
+        The function takes a graph list and returns a list of the graphs in the graph list
+        :return: The graphlist is being returned.
+        """
         return self.graphlist
 
     def pop(self, index: int = 0):
-        """pop a graph from the graphs, works the same as a standard list pop function"""
         item = self.graphlist.pop(index)
         return item
 
     def remove(self, item: list):
-        """remove an item from the graphs, works the same as a standard list remove function"""
+        """
+        The function removes an item from the graphlist
+
+        :param item: list
+        :type item: list
+        :return: The item is being returned.
+        """
         item = self.graphlist.remove(item)
         return item
 
     def build(self):
+        """
+        It takes a list of graphs, and plots them in a grid
+        """
         total_length = len(self.graphlist)
         if total_length % 2 != 0:
             odd = True

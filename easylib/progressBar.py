@@ -3,12 +3,29 @@ from datetime import datetime
 
 
 def progressbar(it, prefix: str = "", size: int = 60, out=sys.stdout):  # Python3.3+
+    """
+    It takes an iterable, and prints a progress bar to the console, with a percentage, and an estimate of how long it will
+    take to complete
+
+    :param it: the iterable object
+    :param prefix: The text to be displayed before the progress bar
+    :type prefix: str
+    :param size: The length of the progress bar in characters, defaults to 60
+    :type size: int (optional)
+    :param out: The output stream to write to. Defaults to sys.stdout
+    """
     itemsList = ["▏", "▎", "▍", "▌", "▋", "▊", "▉", "█"]
     print(itemsList)
     count = len(it)
     startTime = datetime.now()
     barSize = 0
     def show(j, barSize):
+        """
+        It prints a progress bar.
+
+        :param j: the current iteration
+        :param barSize: The size of the bar
+        """
         x = int(size * j / count)
         if barSize < x:
             barSize = x
