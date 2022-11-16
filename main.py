@@ -1,4 +1,9 @@
-import time
-from easylib.progressBar import progressbar
-for i in progressbar(range(79), "Computing: ", 190):
-    time.sleep(.01) # any code you need
+from easylib.exporter import export
+from easylib.age import Age, Birthdate
+
+page = Age(Birthdate(2006, 12, 23))
+
+exporter = export()
+
+exporter.add(page)
+print(exporter)

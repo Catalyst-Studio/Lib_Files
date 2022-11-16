@@ -1,7 +1,3 @@
-import matplotlib
-from matplotlib import pyplot
-
-
 def Set(x: list, y: list, label: str = None, linestyle: str = "-"):
     """
     It takes two lists of numbers, and returns a dictionary with the keys "x", "y", "label", and "linestyle"
@@ -48,6 +44,19 @@ class Graphbuilder:
         :param plotEngine: The engine that the graphing engine uses, defaults to TkAgg
         :type plotEngine: str (optional)
         """
+        try:
+            import matplotlib
+            from matplotlib import pyplot
+        except ImportError:
+            raise ImportError(
+                """
+Matplotlib is not installed!
+Matplotlib is required to be installed for this module to work!
+
+To install Matplotlib run "pip install matplotlib" in the console
+                """
+            )
+
         if shape not in self.valid_shapes:
             raise ValueError(
                 """Shape provided is not a valid shape

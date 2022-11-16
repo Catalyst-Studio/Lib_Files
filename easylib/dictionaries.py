@@ -26,6 +26,7 @@ def dict_to_list(items: dict = None, split: bool = True):
                 items_r.append(items[i])
             return items_r
 
+
 class Import(dict):
 
     def to_list(self, split: bool = True):
@@ -37,5 +38,4 @@ class Import(dict):
         :type split: bool (optional)
         :return: A list of the keys and values of the dictionary.
         """
-        return dict_to_list(items=self.dictionary, split=split)
-
+        return dict_to_list(items=self, split=split)

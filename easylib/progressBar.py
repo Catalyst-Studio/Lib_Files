@@ -1,13 +1,16 @@
 import sys, time
 from datetime import datetime
+from easylib.colors import color, colored
 
 
-def progressbar(it, prefix: str = "", size: int = 60, out=sys.stdout):  # Python3.3+
+def progressbar(it, colors: color = color(color=(0, 0, 0)), prefix: str = "", size: int = 60, out=sys.stdout):  # Python3.3+
     """
     It takes an iterable, and prints a progress bar to the console, with a percentage, and an estimate of how long it will
     take to complete
 
     :param it: the iterable object
+    :param colors: the color of the bar
+    :type colors: easylib.colors.color
     :param prefix: The text to be displayed before the progress bar
     :type prefix: str
     :param size: The length of the progress bar in characters, defaults to 60
@@ -15,7 +18,6 @@ def progressbar(it, prefix: str = "", size: int = 60, out=sys.stdout):  # Python
     :param out: The output stream to write to. Defaults to sys.stdout
     """
     itemsList = ["▏", "▎", "▍", "▌", "▋", "▊", "▉", "█"]
-    print(itemsList)
     count = len(it)
     startTime = datetime.now()
     barSize = 0
@@ -30,11 +32,11 @@ def progressbar(it, prefix: str = "", size: int = 60, out=sys.stdout):  # Python
         if barSize < x:
             barSize = x
             for char in itemsList:
-                print("\r{}[{}{}] {}% {:.01f}s".format(prefix, "█" * (x-1) + char, " " * (size - x), int((j/count)*100), (datetime.now()-startTime).total_seconds() * 10**3 / 1000), file=out, flush=True, end='')
+                print("\r{}[{}{}] {}% {:.01f}s".format(prefix, colored(colors, "█" * (x-1) + char), " " * (size - x), int((j/count)*100), (datetime.now()-startTime).total_seconds() * 10**3 / 1000), file=out, flush=True, end='')
                 time.sleep(.0001)
         else:
             print(
-                "\r{}[{}{}] {}% {:.01f}s".format(prefix, "█" * x, " " * (size - x), int((j / count) * 100),
+                "\r{}[{}{}] {}% {:.01f}s".format(prefix, colored(colors, "█" * x), " " * (size - x), int((j / count) * 100),
                                                  (datetime.now() - startTime).total_seconds() * 10 ** 3 / 1000),
                 file=out, flush=True, end='')
         return barSize

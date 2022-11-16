@@ -1,6 +1,8 @@
 import builtins
 import datetime
 import matplotlib
+import platform
+import sys
 
 def split(word: str = None):
     """
@@ -36,6 +38,34 @@ def timestamp_print(*args, sep: str = None, end: str = None, file=None, flush: b
     for i in args:
         print_statement = f"{print_statement}{i}"
     builtins.print(f"{timeprint}: {print_statement}", sep=sep, end=end, file=file, flush=flush)
+
+
+def iseven(number: int):
+    return True if number % 2 == 0 else False
+
+
+def isodd(number: int):
+    return False if number % 2 == 0 else True
+
+
+def timedFunction(function: callable, parameters: tuple = ()):
+    starttime = datetime.datetime.now()
+    item = function(*parameters)
+    return {"time": datetime.datetime.now()-starttime, "result": item}
+
+
+def Info():
+    print(
+        f"""
+Python Version: {platform.python_version()}
+Python Build: {platform.python_build()}
+Python Compiler: {platform.python_compiler()}
+Python Branch: {platform.python_branch()}
+Python Revision: {platform.python_revision()}
+Python Implementation:{platform.python_implementation()}
+Python: {sys.version}
+        """
+    )
 
 
 

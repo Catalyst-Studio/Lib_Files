@@ -105,7 +105,7 @@ class printStyle:
         :type message: str
         :return: the message with the color style.
         """
-        return f"{self.getStyle(color)}{message}"
+        return f"{self.getStyle(color)}{message}\033[0m"
 
     def printFormatTable(self):
         """

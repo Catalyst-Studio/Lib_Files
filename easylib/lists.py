@@ -1,5 +1,4 @@
-from typing import Iterable
-import random
+from easylib import dictionaries
 
 
 def combine_list(items: list = None):
@@ -82,45 +81,24 @@ def to_dict(items: list):
 
 class Import(list):
 
-    def __init__(self, items: list):
-        """
-        The function takes in a list and checks if it is empty. If it is empty, it raises a ValueError. If it is not empty,
-        it assigns the list to the variable List
-
-        :param items: list
-        :type items: list
-        """
-        if items is None:
-            raise ValueError("Did not pass through a valid list to print")
-        else:
-            self.List = items
-
     def append_list(self, items: list = None):
-        """
-        If the list is empty, raise an error. Otherwise, append the list
-
-        :param items: list = None
-        :type items: list
-        """
         if items is None:
             raise ValueError("Did not pass through valid list to append")
         else:
-            self.List = self.List + items
+            return Import(self + items)
 
     def copy(self):
         """
         It returns a copy of the list.
         :return: A copy of the list.
         """
-        return Import(self.List.copy())
-
+        return Import(self.copy())
 
     def flatten(self):
         """
         It takes a list of lists and returns a list of all the elements in the list of lists
         """
-        self.List = flattenList(alist=self.List)
-
+        return Import(flattenList(alist=self))
 
     def add(self, check: bool = True):
         """
@@ -131,21 +109,21 @@ class Import(list):
         :type check: bool (optional)
         :return: The return value is the number of items added to the list.
         """
-        return add_list(items=self.List, check=check)
+        return add_list(items=self, check=check)
 
     def combine(self):
         """
         It takes a list of strings, and returns a string that is the concatenation of all the strings in the list
         :return: the result of the combine_list function.
         """
-        return combine_list(items=self.List)
+        return Import(combine_list(items=self))
 
     def to_dict(self):
         """
         It takes a list of objects and returns a dictionary of dictionaries
         :return: A dictionary of the list of items.
         """
-        return to_dict(items=self.List)
+        return dictionaries.Import(to_dict(items=self))
 
     def split_to_list(self):
         """
@@ -153,6 +131,7 @@ class Import(list):
         :return: A list of lists.
         """
         newlist = []
-        for x in self.List:
+        for x in self:
             newlist.append([x])
-        return newlist
+        return Import(newlist)
+
