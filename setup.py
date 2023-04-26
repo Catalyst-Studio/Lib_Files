@@ -1,8 +1,8 @@
 from distutils.core import setup
 
 setup(
-    name='EasyLib',  # How you named your package folder (MyLib)
-    packages=['EasyLib'],  # Chose the same as "name"
+    name='Catalyst-Lib',  # How you named your package folder (MyLib)
+    packages=['Catalyst-Lib'],  # Chose the same as "name"
     version='0.1',  # Start with a small number and increase it with every change you make
     license='Apache License 2.0',  # Chose a license from here: https://help.github.com/articles/licensing-a-repository
     description='The all in one python library you need',  # Give a short description about your library
