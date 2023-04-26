@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1ed4055-03cd-4161-9896-470676be8fc0" name="Changes" comment="add files for publish">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -249,7 +247,7 @@
       <workItem from="1663802492031" duration="13077000" />
       <workItem from="1668049915292" duration="1837000" />
       <workItem from="1682482635117" duration="400000" />
-      <workItem from="1682483048072" duration="1233000" />
+      <workItem from="1682483048072" duration="1306000" />
     </task>
     <task id="LOCAL-00001" summary="add files for publish">
       <created>1682484054210</created>
@@ -265,7 +263,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682484108879</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add files for publish">
+      <created>1682484301622</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1682484301622</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
