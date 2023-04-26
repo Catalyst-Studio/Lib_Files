@@ -9,7 +9,7 @@ setup(
     author='Catalyst Studios',  # Type in your name
     author_email='help@catalyst-studios.cc',  # Type in your E-Mail
     url='https://github.com/Catalyst-Studio/Lib_Files',  # Provide either the link to your github or to your website
-    download_url='https://github.com/user/reponame/archive/v_01.tar.gz',  # I explain this later on
+    download_url='https://github.com/Catalyst-Studio/Lib_Files/archive/refs/tags/Main.tar.gz',  # I explain this later on
     keywords=["library", "easy", "allinone"],  # Keywords that define your package best
     install_requires=[],
     classifiers=[
