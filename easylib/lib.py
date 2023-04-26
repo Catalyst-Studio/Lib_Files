@@ -4,6 +4,7 @@ import matplotlib
 import platform
 import sys
 
+
 def split(word: str = None):
     """
     `split` takes a string and returns a list of characters
@@ -18,7 +19,8 @@ def split(word: str = None):
 # dict class
 
 
-def timestamp_print(*args, sep: str = None, end: str = None, file=None, flush: bool = False, time_format: str = "%Y-%m-%d %H:%M:%S"):
+def timestamp_print(*args, sep: str = None, end: str = None, file=None, flush: bool = False,
+                    time_format: str = "%Y-%m-%d %H:%M:%S"):
     """
     `timestamp_print` is a function that prints a timestamp and then prints whatever you want to print
 
@@ -41,17 +43,17 @@ def timestamp_print(*args, sep: str = None, end: str = None, file=None, flush: b
 
 
 def iseven(number: int):
-    return True if number % 2 == 0 else False
+    return number % 2 == 0
 
 
 def isodd(number: int):
-    return False if number % 2 == 0 else True
+    return number % 2 != 0
 
 
 def timedFunction(function: callable, parameters: tuple = ()):
     starttime = datetime.datetime.now()
     item = function(*parameters)
-    return {"time": datetime.datetime.now()-starttime, "result": item}
+    return {"time": datetime.datetime.now() - starttime, "result": item}
 
 
 def Info():
@@ -66,6 +68,3 @@ Python Implementation:{platform.python_implementation()}
 Python: {sys.version}
         """
     )
-
-
-

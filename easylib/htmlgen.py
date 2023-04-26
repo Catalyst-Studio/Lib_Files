@@ -1,6 +1,13 @@
 from xml.dom.minidom import parseString as string_to_dom
 import pathlib
 
+tags = ["a", "abbr", "acronym", "address", "area", "b", "base", "bdo", "big", "blockquote", "body", "br", "button",
+        "caption", "cite", "code", "col", "colgroup", "dd", "del", "dfn", "div", "dl", "DOCTYPE", "dt", "em",
+        "fieldset", "form", "h1", "h2", "h3", "h4", "h5", "h6", "head", "html", "hr", "i", "img", "input", "ins", "kbd",
+        "label", "legend", "li", "link", "map", "meta", "noscript", "object", "ol", "optgroup", "option", "p", "param",
+        "pre", "q", "samp", "script", "select", "small", "span", "strong", "style", "sub", "sup", "table", "tbody",
+        "td", "textarea", "tfoot", "th", "thead", "title", "tr", "tt", "ul", "var"]
+
 
 def Attributes(args: dict):
     """
@@ -48,32 +55,12 @@ def HTMLStarter(**attributes):
     return f"<!DOCTYPE html{attributes}>"
 
 
-def HTML(*args, **attributes):
-    attributes = Attributes(attributes)
-    internals = Internals(args)
-    return f"<html{attributes}>{internals}</html>"
-
-
-def Head(*args, **attributes):
-    attributes = Attributes(attributes)
-    internals = Internals(args)
-    return f"<head{attributes}>{internals}</head>"
 
 
 def Comment(content: str):
     return f"<!--{content}-->"
 
 
-def P(*args, **attributes):
-    attributes = Attributes(attributes)
-    internals = Internals(args)
-    return f"<p{attributes}>{internals}</p>"
-
-
-def Body(*args, **attributes):
-    attributes = Attributes(attributes)
-    internals = Internals(args)
-    return f"<body{attributes}>{internals}</body>"
 
 
 class Generate:
@@ -109,12 +96,6 @@ class Generate:
             f.write(self.mini() if mini is True else self.prettify())
 
 
-def Title(*args, **attributes):
-    attributes = Attributes(attributes)
-    internals = Internals(args)
-    return f"<title{attributes}>{internals}</title>"
-
-
 def A(*args, **attributes):
     attributes = Attributes(attributes)
     internals = Internals(args)
@@ -127,33 +108,22 @@ def Abbr(*args, **attributes):
     return f"<abbr{attributes}>{internals}</abbr>"
 
 
+def Acronym(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<acronym{attributes}>{internals}</acronym>"
+
+
 def Address(*args, **attributes):
     attributes = Attributes(attributes)
     internals = Internals(args)
     return f"<address{attributes}>{internals}</address>"
 
 
-def Area(**attributes):
-    attributes = Attributes(attributes)
-    return f"<area{attributes}>"
-
-
-def Article(*args, **attributes):
+def Area(*args, **attributes):
     attributes = Attributes(attributes)
     internals = Internals(args)
-    return f"<article{attributes}>{internals}</article>"
-
-
-def Aside(*args, **attributes):
-    attributes = Attributes(attributes)
-    internals = Internals(args)
-    return f"<aside{attributes}>{internals}</aside>"
-
-
-def Audio(*args, **attributes):
-    attributes = Attributes(attributes)
-    internals = Internals(args)
-    return f"<audio{attributes}>{internals}</audio>"
+    return f"<area{attributes}>{internals}</area>"
 
 
 def B(*args, **attributes):
@@ -162,9 +132,10 @@ def B(*args, **attributes):
     return f"<b{attributes}>{internals}</b>"
 
 
-def Base(**attributes):
+def Base(*args, **attributes):
     attributes = Attributes(attributes)
-    return f"<base{attributes}>"
+    internals = Internals(args)
+    return f"<base{attributes}>{internals}</base>"
 
 
 def Bdo(*args, **attributes):
@@ -173,27 +144,34 @@ def Bdo(*args, **attributes):
     return f"<bdo{attributes}>{internals}</bdo>"
 
 
+def Big(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<big{attributes}>{internals}</big>"
+
+
 def Blockquote(*args, **attributes):
     attributes = Attributes(attributes)
     internals = Internals(args)
     return f"<blockquote{attributes}>{internals}</blockquote>"
 
 
-def Br(**attributes):
+def Body(*args, **attributes):
     attributes = Attributes(attributes)
-    return f"<br{attributes}/>"
+    internals = Internals(args)
+    return f"<body{attributes}>{internals}</body>"
+
+
+def Br(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<br{attributes}>{internals}</br>"
 
 
 def Button(*args, **attributes):
     attributes = Attributes(attributes)
     internals = Internals(args)
     return f"<button{attributes}>{internals}</button>"
-
-
-def Canvas(*args, **attributes):
-    attributes = Attributes(attributes)
-    internals = Internals(args)
-    return f"<canvas{attributes}>{internals}</canvas>"
 
 
 def Caption(*args, **attributes):
@@ -226,13 +204,361 @@ def Colgroup(*args, **attributes):
     return f"<colgroup{attributes}>{internals}</colgroup>"
 
 
-def Command(*args, **attributes):
+def Dd(*args, **attributes):
     attributes = Attributes(attributes)
     internals = Internals(args)
-    return f"<command{attributes}>{internals}</command>"
+    return f"<dd{attributes}>{internals}</dd>"
 
 
-def Datagrid(*args, **attributes):
+def Del(*args, **attributes):
     attributes = Attributes(attributes)
     internals = Internals(args)
-    return f"<datagrid{attributes}>{internals}</datagrid>"
+    return f"<del{attributes}>{internals}</del>"
+
+
+def Dfn(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<dfn{attributes}>{internals}</dfn>"
+
+
+def Div(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<div{attributes}>{internals}</div>"
+
+
+def Dl(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<dl{attributes}>{internals}</dl>"
+
+
+def Doctype(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<DOCTYPE{attributes}>{internals}</DOCTYPE>"
+
+
+def Dt(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<dt{attributes}>{internals}</dt>"
+
+
+def Em(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<em{attributes}>{internals}</em>"
+
+
+def Fieldset(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<fieldset{attributes}>{internals}</fieldset>"
+
+
+def Form(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<form{attributes}>{internals}</form>"
+
+
+def H1(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<h1{attributes}>{internals}</h1>"
+
+
+def H2(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<h2{attributes}>{internals}</h2>"
+
+
+def H3(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<h3{attributes}>{internals}</h3>"
+
+
+def H4(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<h4{attributes}>{internals}</h4>"
+
+
+def H5(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<h5{attributes}>{internals}</h5>"
+
+
+def H6(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<h6{attributes}>{internals}</h6>"
+
+
+def Head(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<head{attributes}>{internals}</head>"
+
+
+def Html(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<html{attributes}>{internals}</html>"
+
+
+def Hr(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<hr{attributes}>{internals}</hr>"
+
+
+def I(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<i{attributes}>{internals}</i>"
+
+
+def Img(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<img{attributes}>{internals}</img>"
+
+
+def Input(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<input{attributes}>{internals}</input>"
+
+
+def Ins(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<ins{attributes}>{internals}</ins>"
+
+
+def Kbd(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<kbd{attributes}>{internals}</kbd>"
+
+
+def Label(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<label{attributes}>{internals}</label>"
+
+
+def Legend(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<legend{attributes}>{internals}</legend>"
+
+
+def Li(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<li{attributes}>{internals}</li>"
+
+
+def Link(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<link{attributes}>{internals}</link>"
+
+
+def Map(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<map{attributes}>{internals}</map>"
+
+
+def Meta(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<meta{attributes}>{internals}</meta>"
+
+
+def Noscript(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<noscript{attributes}>{internals}</noscript>"
+
+
+def Object(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<object{attributes}>{internals}</object>"
+
+
+def Ol(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<ol{attributes}>{internals}</ol>"
+
+
+def Optgroup(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<optgroup{attributes}>{internals}</optgroup>"
+
+
+def Option(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<option{attributes}>{internals}</option>"
+
+
+def P(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<p{attributes}>{internals}</p>"
+
+
+def Param(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<param{attributes}>{internals}</param>"
+
+
+def Pre(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<pre{attributes}>{internals}</pre>"
+
+
+def Q(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<q{attributes}>{internals}</q>"
+
+
+def Samp(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<samp{attributes}>{internals}</samp>"
+
+
+def Script(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<script{attributes}>{internals}</script>"
+
+
+def Select(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<select{attributes}>{internals}</select>"
+
+
+def Small(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<small{attributes}>{internals}</small>"
+
+
+def Span(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<span{attributes}>{internals}</span>"
+
+
+def Strong(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<strong{attributes}>{internals}</strong>"
+
+
+def Style(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<style{attributes}>{internals}</style>"
+
+
+def Sub(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<sub{attributes}>{internals}</sub>"
+
+
+def Sup(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<sup{attributes}>{internals}</sup>"
+
+
+def Table(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<table{attributes}>{internals}</table>"
+
+
+def Tbody(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<tbody{attributes}>{internals}</tbody>"
+
+
+def Td(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<td{attributes}>{internals}</td>"
+
+
+def Textarea(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<textarea{attributes}>{internals}</textarea>"
+
+
+def Tfoot(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<tfoot{attributes}>{internals}</tfoot>"
+
+
+def Th(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<th{attributes}>{internals}</th>"
+
+
+def Thead(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<thead{attributes}>{internals}</thead>"
+
+
+def Title(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<title{attributes}>{internals}</title>"
+
+
+def Tr(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<tr{attributes}>{internals}</tr>"
+
+
+def Tt(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<tt{attributes}>{internals}</tt>"
+
+
+def Ul(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<ul{attributes}>{internals}</ul>"
+
+
+def Var(*args, **attributes):
+    attributes = Attributes(attributes)
+    internals = Internals(args)
+    return f"<var{attributes}>{internals}</var>"

@@ -1,3 +1,6 @@
+from matplotlib import pyplot
+
+
 def Set(x: list, y: list, label: str = None, linestyle: str = "-"):
     """
     It takes two lists of numbers, and returns a dictionary with the keys "x", "y", "label", and "linestyle"

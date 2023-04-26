@@ -1,6 +1,20 @@
 from random import randint
 
 
+def printFormatTable():
+    """
+    It prints a table of all the possible combinations of foreground and background colors, and styles
+    """
+    for style in range(2):
+        for fg in range(30, 38):
+            s1 = ''
+            for bg in range(40, 48):
+                format = ';'.join([str(style), str(fg), str(bg)])
+                s1 = s1 + '\x1b[%sm %s \x1b[0m' % (format, format)
+            print(s1)
+        print('\n')
+
+
 class printStyle:
 
     def __init__(self):
@@ -106,19 +120,6 @@ class printStyle:
         :return: the message with the color style.
         """
         return f"{self.getStyle(color)}{message}\033[0m"
-
-    def printFormatTable(self):
-        """
-        It prints a table of all the possible combinations of foreground and background colors, and styles
-        """
-        for style in range(2):
-            for fg in range(30, 38):
-                s1 = ''
-                for bg in range(40, 48):
-                    format = ';'.join([str(style), str(fg), str(bg)])
-                    s1 = s1 + '\x1b[%sm %s \x1b[0m' % (format, format)
-                print(s1)
-            print('\n')
 
 
 class color:

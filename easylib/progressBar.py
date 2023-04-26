@@ -30,10 +30,11 @@ def progressbar(it, colors: color = color(color=(0, 0, 0)), prefix: str = "", si
         """
         x = int(size * j / count)
         if barSize < x:
-            barSize = x
-            for char in itemsList:
-                print("\r{}[{}{}] {}% {:.01f}s".format(prefix, colored(colors, "█" * (x-1) + char), " " * (size - x), int((j/count)*100), (datetime.now()-startTime).total_seconds() * 10**3 / 1000), file=out, flush=True, end='')
-                time.sleep(.0001)
+            print(
+                "\r{}[{}{}] {}% {:.01f}s".format(prefix, colored(colors, "█" * x), " " * (size - x),
+                                                 int((j / count) * 100),
+                                                 (datetime.now() - startTime).total_seconds() * 10 ** 3 / 1000),
+                file=out, flush=True, end='')
         else:
             print(
                 "\r{}[{}{}] {}% {:.01f}s".format(prefix, colored(colors, "█" * x), " " * (size - x), int((j / count) * 100),

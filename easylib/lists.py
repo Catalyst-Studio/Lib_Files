@@ -1,6 +1,13 @@
 from easylib import dictionaries
 
 
+def contains_duplicates(items: list):
+    for x in items:
+        if items.count(x) != 1:
+            return True
+    return False
+
+
 def combine_list(items: list = None):
     """
     It takes a list of strings and returns a single string that is the concatenation of all the strings in the list
@@ -39,25 +46,6 @@ def flattenList(alist: list = None):
         return newlist
 
 
-def add_list(items: list, check: bool = True):
-    """
-    `add_list` takes a list of integers and returns the sum of the list
-
-    :param items: list - this is the list of items to be added
-    :type items: list
-    :param check: bool = True, defaults to True
-    :type check: bool (optional)
-    :return: The sum of all the items in the list.
-    """
-    num: any = 0
-    for i in items:
-        if type(i) != int and check:
-            raise ValueError("one or more items in list are not int")
-        else:
-            num = num + i
-    return num
-
-
 def to_dict(items: list):
     """
     It takes a list of items and returns a dictionary with the first item in the list as the key and the second item as the
@@ -79,44 +67,33 @@ def to_dict(items: list):
     return Dict
 
 
-class Import(list):
+class List(list):
 
     def append_list(self, items: list = None):
         if items is None:
             raise ValueError("Did not pass through valid list to append")
         else:
-            return Import(self + items)
+            return List(self + items)
 
     def copy(self):
         """
         It returns a copy of the list.
         :return: A copy of the list.
         """
-        return Import(self.copy())
+        return List(self.copy())
 
     def flatten(self):
         """
         It takes a list of lists and returns a list of all the elements in the list of lists
         """
-        return Import(flattenList(alist=self))
-
-    def add(self, check: bool = True):
-        """
-        This function takes a list of items and adds them together
-
-        :param check: If True, the function will check if the item already exists in the list. If it does, it will not add
-        it, defaults to True
-        :type check: bool (optional)
-        :return: The return value is the number of items added to the list.
-        """
-        return add_list(items=self, check=check)
+        return List(flattenList(alist=self))
 
     def combine(self):
         """
         It takes a list of strings, and returns a string that is the concatenation of all the strings in the list
         :return: the result of the combine_list function.
         """
-        return Import(combine_list(items=self))
+        return List(combine_list(items=self))
 
     def to_dict(self):
         """
@@ -133,5 +110,52 @@ class Import(list):
         newlist = []
         for x in self:
             newlist.append([x])
-        return Import(newlist)
+        return List(newlist)
 
+    def first_even(self):
+        for x in self:
+            if type(x) != int:
+                raise ValueError(f"Invalid type of item in list: was type {type(x)}")
+            if x % 2 == 0:
+                return x
+
+    def list(self):
+        return self
+
+    def first_odd(self):
+        for x in self:
+            if type(x) != int:
+                raise ValueError(f"Invalid type of item in list: was type {type(x)}")
+            if x % 2 != 0:
+                return x
+
+    def all_evens(self):
+        evens = []
+        for x in self:
+            if type(x) != int:
+                raise ValueError(f"Invalid type of item in list: was type {type(x)}")
+            if x % 2 == 0:
+                evens.append(x)
+        return evens
+
+    def all_odds(self):
+        odds = []
+        for x in self:
+            if type(x) != int:
+                raise ValueError(f"Invalid type of item in list: was type {type(x)}")
+            if x % 2 != 0:
+                odds.append(x)
+        return odds
+
+    def types(self):
+        types = []
+        for x in self:
+            types.append(type(x))
+        return types
+
+    def find(self, item: any):
+        items = []
+        for x in self:
+            if x == item:
+                items.append(item)
+        return items
